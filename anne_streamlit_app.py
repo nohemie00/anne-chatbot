@@ -36,9 +36,9 @@ with st.sidebar:
 @st.cache_resource
 def initialize_chain():
     # Supabase 설정
-    supabase_url = os.getenv("SUPABASE_URL", "https://dxxixmzrnnwvikjfpmah.supabase.co")
-    supabase_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
-    openai_api_key = os.getenv("OPENAI_API_KEY")
+    supabase_url = st.secrets["SUPABASE_URL"]
+    supabase_key = st.secrets["SUPABASE_SERVICE_ROLE_KEY"]
+    openai_api_key = st.secrets["OPENAI_API_KEY"]
     
     # Supabase 클라이언트 생성
     client = create_client(supabase_url, supabase_key)
