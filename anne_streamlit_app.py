@@ -8,42 +8,66 @@ from langchain.schema import HumanMessage, SystemMessage
 from supabase import create_client
 import os
 from dotenv import load_dotenv
+import base64
 
-# PWA 관련 HTML 코드 추가
+# PWA 설정을 위한 HTML 및 JavaScript
+pwa_html = '''
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f5f5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="앤 셜리">
+    <style>
+        @media (display-mode: standalone) {
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                background-color: #f5f5f5;
+            }
+        }
+    </style>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    const registration = await navigator.serviceWorker.register('sw.js');
+                    console.log('ServiceWorker registered');
+                } catch (err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                }
+            });
+        }
+    </script>
+</head>
+'''
+
+# Streamlit 페이지 설정
 st.set_page_config(
     page_title="앤 셜리와의 대화",
     page_icon="👩‍🦰",
     layout="wide"
 )
 
-# PWA 메타태그와 링크 추가
-st.markdown('''
-    <head>
-        <link rel="manifest" href="/manifest.json">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#f5f5f5">
-        <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512x512.png">
-        <link rel="apple-touch-icon" href="/assets/icon-192x192.png">
-    </head>
-''', unsafe_allow_html=True)
+# PWA 관련 HTML 삽입
+st.markdown(pwa_html, unsafe_allow_html=True)
 
-# Service Worker 등록
-st.markdown('''
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(function(registration) {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(function(err) {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-            });
+# 모바일 최적화를 위한 CSS
+st.markdown("""
+<style>
+    @media (max-width: 768px) {
+        .stApp {
+            margin: 0;
+            padding: 10px;
         }
-    </script>
-''', unsafe_allow_html=True)
+        .stChatMessage {
+            max-width: 100%;
+            padding: 8px;
+        }
+    }
+</style>
+""", unsafe_allow_html=True)
 
 # 사이드바에 이미지와 소개 추가
 with st.sidebar:
