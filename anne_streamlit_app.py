@@ -7,13 +7,43 @@ from langchain.prompts import PromptTemplate
 from langchain.schema import HumanMessage, SystemMessage
 from supabase import create_client
 import os
+from dotenv import load_dotenv
 
-# Streamlit 페이지 설정
+# PWA 관련 HTML 코드 추가
 st.set_page_config(
     page_title="앤 셜리와의 대화",
     page_icon="👩‍🦰",
     layout="wide"
 )
+
+# PWA 메타태그와 링크 추가
+st.markdown('''
+    <head>
+        <link rel="manifest" href="/manifest.json">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#f5f5f5">
+        <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512x512.png">
+        <link rel="apple-touch-icon" href="/assets/icon-192x192.png">
+    </head>
+''', unsafe_allow_html=True)
+
+# Service Worker 등록
+st.markdown('''
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+''', unsafe_allow_html=True)
 
 # 사이드바에 이미지와 소개 추가
 with st.sidebar:
