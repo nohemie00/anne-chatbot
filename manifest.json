@@ -1,0 +1,21 @@
+{
+    "name": "앤 셜리와의 대화",
+    "short_name": "앤 셜리",
+    "description": "그린게이블즈의 앤 셜리와 대화하는 AI 챗봇",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#f5f5f5",
+    "icons": [
+        {
+            "src": "assets/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+} 
