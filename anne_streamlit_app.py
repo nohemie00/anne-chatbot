@@ -10,39 +10,6 @@ import os
 from dotenv import load_dotenv
 import base64
 
-# PWA 설정을 위한 HTML 및 JavaScript
-pwa_html = '''
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f5f5f5">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="앤 셜리">
-    <style>
-        @media (display-mode: standalone) {
-            body {
-                margin: 0;
-                padding: 0;
-                height: 100vh;
-                background-color: #f5f5f5;
-            }
-        }
-    </style>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', async () => {
-                try {
-                    const registration = await navigator.serviceWorker.register('sw.js');
-                    console.log('ServiceWorker registered');
-                } catch (err) {
-                    console.log('ServiceWorker registration failed: ', err);
-                }
-            });
-        }
-    </script>
-</head>
-'''
-
 # Streamlit 페이지 설정
 st.set_page_config(
     page_title="앤 셜리와의 대화",
@@ -50,21 +17,63 @@ st.set_page_config(
     layout="wide"
 )
 
-# PWA 관련 HTML 삽입
-st.markdown(pwa_html, unsafe_allow_html=True)
-
 # 모바일 최적화를 위한 CSS
 st.markdown("""
 <style>
+    /* 전체 앱 컨테이너 스타일 */
+    .stApp {
+        max-width: 100%;
+        padding: 1rem;
+    }
+    
+    /* 모바일 화면에서의 스타일 */
     @media (max-width: 768px) {
         .stApp {
-            margin: 0;
-            padding: 10px;
+            padding: 0.5rem;
         }
+        
+        /* 채팅 메시지 스타일 */
         .stChatMessage {
-            max-width: 100%;
-            padding: 8px;
+            padding: 0.5rem !important;
+            margin: 0.5rem 0 !important;
+            border-radius: 10px !important;
         }
+        
+        /* 사이드바 조정 */
+        .css-1d391kg {
+            padding: 1rem !important;
+        }
+        
+        /* 입력 필드 스타일 */
+        .stTextInput input {
+            font-size: 16px !important;  /* iOS에서 자동 확대 방지 */
+            padding: 0.5rem !important;
+        }
+        
+        /* 이미지 크기 조정 */
+        img {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+    }
+    
+    /* 채팅 컨테이너 스타일 */
+    .stChatFloatingInputContainer {
+        padding: 0.5rem !important;
+        background-color: white !important;
+    }
+    
+    /* 스크롤바 스타일 */
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
     }
 </style>
 """, unsafe_allow_html=True)
