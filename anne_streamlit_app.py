@@ -14,72 +14,19 @@ import base64
 st.set_page_config(
     page_title="앤 셜리와의 대화",
     page_icon="👩‍🦰",
-    layout="centered"
+    layout="wide"
 )
 
-# 모바일 최적화를 위한 CSS
+# 모바일 최적화를 위한 기본 CSS
 st.markdown("""
 <style>
-    /* 기본 스타일 리셋 */
-    .stApp > header {
-        background-color: transparent !important;
-    }
-    
-    .stApp {
-        margin: 0 auto !important;
-        padding: 1rem !important;
-        max-width: 100% !important;
-    }
-    
-    /* 채팅 컨테이너 스타일 */
-    .stChatFloatingInputContainer {
-        bottom: 0 !important;
-        padding: 1rem !important;
-        background: white !important;
-    }
-    
-    /* 채팅 메시지 스타일 */
-    .stChatMessage {
-        background-color: #f0f2f6 !important;
-        border-radius: 15px !important;
-        padding: 1rem !important;
-        margin: 0.5rem 0 !important;
-        max-width: 100% !important;
-    }
-    
-    /* 사이드바 스타일 */
-    .css-1d391kg {
-        padding: 1rem !important;
-    }
-    
-    /* 모바일 화면 최적화 */
     @media (max-width: 768px) {
         .stApp {
-            padding: 0.5rem !important;
+            padding: 1rem;
         }
-        
         .stChatMessage {
-            padding: 0.75rem !important;
-            margin: 0.25rem 0 !important;
-        }
-        
-        .stChatFloatingInputContainer {
-            padding: 0.5rem !important;
-        }
-        
-        .stTextInput input {
-            font-size: 16px !important;
-            padding: 0.5rem !important;
-            border-radius: 20px !important;
-        }
-        
-        img {
-            max-width: 100% !important;
-            height: auto !important;
-        }
-        
-        [data-testid="stSidebar"] {
-            padding: 0.5rem !important;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
         }
     }
 </style>
