@@ -58,13 +58,9 @@ def initialize_chain():
             st.error("Required secrets are missing")
             st.stop()
             
-        # Debug information
-        st.write("Attempting to connect to Supabase...")
-        
         # Supabase 클라이언트 생성
         try:
             client = create_client(supabase_url, supabase_key)
-            st.write("Successfully connected to Supabase!")
         except Exception as e:
             st.error(f"Failed to create Supabase client: {str(e)}")
             st.stop()
@@ -171,22 +167,4 @@ if prompt := st.chat_input("앤에게 메시지를 보내보세요..."):
         with st.spinner("앤이 생각하고 있어요..."):
             response = chain({"question": prompt})
             st.markdown(response["answer"])
-            st.session_state.messages.append({"role": "assistant", "content": response["answer"]})
-
-# 스타일 적용
-st.markdown("""
-<style>
-    .stApp {
-        background-color: #f5f5f5;
-    }
-    .css-1d391kg {
-        background-color: #ffffff;
-    }
-    .stChatMessage {
-        background-color: #ffffff;
-        border-radius: 15px;
-        padding: 10px;
-        margin: 5px 0;
-    }
-</style>
-""", unsafe_allow_html=True) 
+            st.session_state.messages.append({"role": "assistant", "content": response["answer"]}) 
