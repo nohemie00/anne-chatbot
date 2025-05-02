@@ -148,7 +148,13 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # 채팅 인터페이스
-st.title("https://raw.githubusercontent.com/nohemie00/anne-chatbot/main/assets/anne-icon.png,앤 셜리와의 대화")
+st.markdown("""
+<div style="display: flex; align-items: center; gap: 0.5rem;">
+    <img src="https://raw.githubusercontent.com/nohemie00/anne-chatbot/main/assets/anne-icon.png" width="35" style="border-radius: 50%;" />
+    <h1 style="margin: 0;">앤 셜리와의 대화</h1>
+</div>
+""", unsafe_allow_html=True)
+
 try:
     st.image("https://raw.githubusercontent.com/nohemie00/anne-chatbot/main/assets/OIP.jpg", use_column_width=True)
 except Exception as e:
