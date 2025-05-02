@@ -45,6 +45,9 @@ with st.sidebar:
     *"오늘은 새로운 날이에요. 아직 아무런 실수도 하지 않은 날이죠!"* ✨
     """)
 
+# 커버 이미지
+st.image("https://raw.githubusercontent.com/nohemie00/anne-chatbot/main/assets/OIP.jpg", use_container_width=True)
+
 # 초기 설정
 @st.cache_resource
 def initialize_chain():
