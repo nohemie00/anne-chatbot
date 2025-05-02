@@ -151,7 +151,7 @@ if "messages" not in st.session_state:
 st.title("👩‍🦰 앤 셜리와의 대화")
 
 # 메인 이미지 추가
-st.image("assets/OIP.jpg", use_container_width=True)
+st.image("https://raw.githubusercontent.com/nohemie00/anne-chatbot/main/assets/OIP.jpg", use_container_width=True)
 
 # 채팅 메시지 표시
 for message in st.session_state.messages:
