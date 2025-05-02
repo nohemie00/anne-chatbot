@@ -174,7 +174,7 @@ if prompt := st.chat_input("앤에게 하고 싶은 말을 맘껏 해보세요..
         st.markdown(prompt)
     
     # 앤의 응답 생성
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar="https://raw.githubusercontent.com/nohemie00/anne-chatbot/main/assets/anne-favicon.png"):
         with st.spinner("앤이 생각하고 있어요..."):
             response = chain({"question": prompt})
             st.markdown(response["answer"])
