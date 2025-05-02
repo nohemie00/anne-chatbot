@@ -32,9 +32,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 커버 이미지 추가
-st.image("https://raw.githubusercontent.com/nohemie00/anne-chatbot/main/assets/OIP.jpg", use_container_width=True)
-
 # 사이드바에 이미지와 소개 추가
 with st.sidebar:
     st.image("assets/anne.jpg", width=300)
