@@ -149,7 +149,11 @@ if "messages" not in st.session_state:
 
 # 채팅 인터페이스
 st.title("👩‍🦰 앤 셜리와의 대화")
-
+try:
+    st.image("https://raw.githubusercontent.com/nohemie00/anne-chatbot/main/assets/OIP.jpg", use_column_width=True)
+except Exception as e:
+    st.warning("이미지를 불러오는 데 문제가 발생했습니다.")
+    st.text(str(e))
 
 # 채팅 메시지 표시
 for message in st.session_state.messages:
