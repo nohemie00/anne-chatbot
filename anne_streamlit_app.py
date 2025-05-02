@@ -150,8 +150,6 @@ if "messages" not in st.session_state:
 # 채팅 인터페이스
 st.title("👩‍🦰 앤 셜리와의 대화")
 
-# 메인 이미지 추가
-st.image("assets/OIP.jpg", width=600)", use_container_width=True)
 
 # 채팅 메시지 표시
 for message in st.session_state.messages:
