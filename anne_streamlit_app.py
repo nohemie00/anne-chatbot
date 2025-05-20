@@ -34,7 +34,12 @@ st.markdown("""
 
 # 사이드바에 이미지와 소개 추가
 with st.sidebar:
-    st.image("assets/anne.jpg", width=300)
+    try:
+        st.image("assets/anne.jpg", width=300)
+    except Exception as e:
+        st.warning("사이드바 이미지를 불러오는 데 문제가 발생했습니다.")
+        st.text(str(e))
+    
     st.title("앤 셜리")
     st.markdown("""
     안녕하세요! 저는 그린게이블즈의 앤 셜리예요. 
@@ -80,11 +85,12 @@ def initialize_chain():
             query_name="match_embeddings"
         )
         
-        # 메모리 설정
+        # 메모리 설정 (업데이트된 방식)
         memory = ConversationBufferMemory(
             memory_key="chat_history",
             return_messages=True,
-            output_key="answer"
+            output_key="answer",
+            input_key="question"
         )
         
         # LLM 모델 초기화
@@ -156,7 +162,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 try:
-    st.image("https://raw.githubusercontent.com/nohemie00/anne-chatbot/main/assets/OIP.jpg", use_column_width=True)
+    st.image("https://raw.githubusercontent.com/nohemie00/anne-chatbot/main/assets/OIP.jpg", use_container_width=True)
 except Exception as e:
     st.warning("이미지를 불러오는 데 문제가 발생했습니다.")
     st.text(str(e))
